@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { DiaryEntry } from './diary-entry.model';
 
 @Injectable({
@@ -8,13 +9,16 @@ export class DiaryDataService {
 
   constructor() { }
 
-  diaryEntry: DiaryEntry[] = [
+  diarySubject = new Subject<DiaryEntry[]>();
+
+  diaryEntries: DiaryEntry[] = [
     new DiaryEntry("Jan 1st", "Entry 1"),
     new DiaryEntry("Jan 2nd", "Entry 2"),
     new DiaryEntry("Feb 22nd", "Entry 3"),
   ]
 
   onDelete(index: number) {
-    this.diaryEntry.splice(index, 1);
+    this.diaryEntries.splice(index, 1);
+    this.diarySubject.next(this.diaryEntries);
   }
 }
