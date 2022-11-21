@@ -36,8 +36,6 @@ export class DiaryComponent implements OnInit {
     this.diarySubscription.unsubscribe();
   }
 
-  getDiaryEntry(index: number) {
-    return {...this.diaryEntries[index]}
-  }
+
 
 }

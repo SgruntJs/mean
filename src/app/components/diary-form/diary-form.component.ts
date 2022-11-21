@@ -14,6 +14,8 @@ export class DiaryFormComponent implements OnInit {
 
   diaryForm!: FormGroup;
   editMode = false;
+  diaryEntry!: DiaryEntry;
+  paramId!: number;
 
   constructor(private diarySrv: DiaryDataService, private router: Router, private ActivatedRoute: ActivatedRoute) { }
 
@@ -21,13 +23,15 @@ export class DiaryFormComponent implements OnInit {
     this.ActivatedRoute.paramMap.subscribe( paramMap => {
         if(paramMap.has('id')) {
               this.editMode = true;
-        } else {
+              this.paramId = +paramMap.get('id')!;// dato che è una string lo trasformaimo in number con il + e il ! che dic eche non è null
+              this.diaryEntry = this.diarySrv.getDiaryEntry(this.paramId);
+            } else {
           this.editMode = false;
         }
     });
     this.diaryForm = new FormGroup({
-      "date": new FormControl(null, [Validators.required]),
-      "entry": new FormControl(null, [Validators.required])
+      "date": new FormControl(this.editMode ? this.diaryEntry.date : null, [Validators.required]),
+      "entry": new FormControl(this.editMode ? this.diaryEntry.entry : null, [Validators.required])
     })
   }
 
