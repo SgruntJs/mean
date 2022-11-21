@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col">
+        <form [formGroup]="menuForm">
+            <div class="form-group">
+                <label for="giorno">Giorno</label>
+                <input type="date" class="form-control" formControlName="giorno">
+            </div>
+            <div class="form-group">
+                <label for="primo1">Primi</label>
+                <input type="text" class="form-control" formControlName="primo1">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="primo2">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="primo3">
+            </div>
+            <div class="form-group">
+                <label for="secondo1">Secondi</label>
+                <input type="text" class="form-control" formControlName="secondo1">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="secondo2">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="secondo3">
+            </div>
+            <button class="btn btn-success" [disabled]="!menuForm.valid" (click)="onSubmit()">Aggiungi menu di oggi</button>
+        </form>
+    </div>
+</div>

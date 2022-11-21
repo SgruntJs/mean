@@ -1,5 +1,6 @@
 const express = require('express');
 const  DiaryEntryModel = require('./entry-schema');
+const MenuModel = require('./menu-schema');
 const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
@@ -73,6 +74,27 @@ diaryEntries = [
     const diaryEntry = new DiaryEntryModel( {date: req.body.date, entry: req.body.entry});
     console.log(diaryEntry);
     diaryEntry.save()
+    .then(() => {
+        res.status(200).json({
+            message: 'Post submitted'
+        })
+    });
+    //diaryEntries.push({ id: req.body.id, date: req.body.date, entry: req.body.entry});
+    
+  });
+
+  app.post('/add-menu', (req, res) => {
+    const newMenu = new MenuModel( {
+        giorno: req.body.giorno, 
+        primo1: req.body.primo1,
+        primo2: req.body.primo2,
+        primo3: req.body.primo3,
+        secondo1: req.body.secondo1,
+        secondo2: req.body.secondo2,
+        secondo2: req.body.secondo2,
+    });
+
+    newMenu.save()
     .then(() => {
         res.status(200).json({
             message: 'Post submitted'
