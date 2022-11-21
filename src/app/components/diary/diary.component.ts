@@ -25,7 +25,8 @@ export class DiaryComponent implements OnInit {
   }
 
   onDelete(index: number) {
-      this.diarySrv.onDelete(index);
+      this.diarySrv.onDeleteEntry(index);
+      console.log(index)
       this.diaryEntries = this.diarySrv.diaryEntries;
   }
 
