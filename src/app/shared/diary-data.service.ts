@@ -12,32 +12,44 @@ export class DiaryDataService {
 
   public diarySubject = new Subject<DiaryEntry[]>();
 
-  diaryEntries: DiaryEntry[] = []
+  diaryEntries!: DiaryEntry[];
 
   onDelete(index: number) {
     this.diaryEntries.splice(index, 1);
     this.diarySubject.next(this.diaryEntries);
   }
-// push() used to add an element into an array
+  // push() used to add an element into an array
   onAddDiaryEntry(diaryEntry: DiaryEntry) {
-      this.diaryEntries.push(diaryEntry);
-      this.diarySubject.next(this.diaryEntries);
+    this.http.get<{maxId: number}>('http://localhost:3000/max-id').subscribe( (jsonData) => {
+      diaryEntry.id = jsonData.maxId + 1;
+      this.http.post<{message: string}>('http://localhost:3000/add-entry', diaryEntry).subscribe( res => {
+        this.getDiaryEntries();
+      });
+    })
+    // this.diaryEntries.push(diaryEntry);
+    // this.diarySubject.next(this.diaryEntries);
   }
 
   getDiaryEntries() {
-    this.http.get<{diaryEntries: DiaryEntry[]}>('localhost:3000/diary-entries').subscribe( jsonData => {
+    this.http.get<{ diaryEntries: DiaryEntry[] }>('http://localhost:3000/diary-entries').subscribe(jsonData => {
       this.diaryEntries = jsonData.diaryEntries;
-    } );
-    this.diarySubject.next(this.diaryEntries);
+      this.diarySubject.next(this.diaryEntries);
+    });
+
+
+
   }
 
-  getDiaryEntry(index: number) {
+  getDiaryEntry(id: number) {
+    const index = this.diaryEntries.findIndex(el => {
+      return el.id == id
+    });
+    return this.diaryEntries[index];
 
-    return {...this.diaryEntries[index]}
   }
 
   onUpdateEntry(paramId: number, newEntry: DiaryEntry) {
-      this.diaryEntries[paramId] = newEntry;
-      this.diarySubject.next(this.diaryEntries);
+    this.diaryEntries[paramId] = newEntry;
+    this.diarySubject.next(this.diaryEntries);
   }
 }
