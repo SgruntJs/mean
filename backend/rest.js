@@ -91,7 +91,7 @@ diaryEntries = [
         primo3: req.body.primo3,
         secondo1: req.body.secondo1,
         secondo2: req.body.secondo2,
-        secondo2: req.body.secondo2,
+        secondo3: req.body.secondo2,
     });
 
     newMenu.save()
@@ -111,5 +111,11 @@ app.get('/diary-entries',(req, res, next) => {
     })
     
 })
+
+app.get('/menu-list', (req, res, next) => {
+    MenuModel.find().then( data => {
+        res.json({ 'menu': data});
+    })
+});
 
 module.exports = app;
