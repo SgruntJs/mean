@@ -32,7 +32,7 @@ diaryEntries = [
 
   app.get('/max-id', (req, res) => {
     var max = 0;
-     for (var i = 0; i < diaryEntries.lentgh; i++) {
+     for (var i = 0; i < diaryEntries.length; i++) {
         if(diaryEntries[i].id > max) {
             max = diaryEntries[i].id;
         }
@@ -41,23 +41,32 @@ diaryEntries = [
   });
 
   app.delete('/remove-entry/:id', (req, res) => {
-        const index = diaryEntries.findIndex( el => {
-            return el.id == req.params.id;
-        });
-        diaryEntries.splice(index, 1);
+    DiaryEntryModel.deleteOne({_id: req.params.id})
+    .then( () => {
         res.status(200).json({
             message: 'Post Deleted'
         })
+    })
+        // const index = diaryEntries.findIndex( el => {
+        //     return el.id == req.params.id;
+        // });
+        // diaryEntries.splice(index, 1);
+      
   })
 
   app.put('/update-entry/:id', (req, res) => {
-    const index = diaryEntries.findIndex( el => {
-        return el.id == req.params.id;
+    const updatedEntry = new DiaryEntryModel( {date: req.body.date, entry: req.body.entry});
+    // const index = diaryEntries.findIndex( el => {
+    //     return el.id == req.params.id;
+    // });
+    // diaryEntries[index] = {id: req.body.id, date: req.body.date, entry: req.body.entry};
+    DiaryEntryModel.updateOne({_id: req.body.id}, updatedEntry)
+    .then(() => {
+        res.status(200).json({
+            message: 'post edited'
+        })
     });
-    diaryEntries[index] = {id: req.body.id, date: req.body.date, entry: req.body.entry};
-    res.status(200).json({
-        message: 'post edited'
-    })
+    
   })
 
   app.post('/add-entry', (req, res) => {

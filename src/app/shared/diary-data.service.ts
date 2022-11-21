@@ -9,7 +9,7 @@ import { DiaryEntry } from './diary-entry.model';
 })
 export class DiaryDataService {
 
-  maxId!: number;
+  maxId!: string;
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +17,7 @@ export class DiaryDataService {
 
   diaryEntries!: DiaryEntry[];
 
-  onDeleteEntry(id: number) {
+  onDeleteEntry(id: string) {
     this.http.delete<{ message: string }>('htttp://localhost:3000/remove-entry/' + id)
     .subscribe(jsondata => {
       this.getDiaryEntries();
@@ -27,7 +27,7 @@ export class DiaryDataService {
   }
   // push() used to add an element into an array
   onAddDiaryEntry(diaryEntry: DiaryEntry) {
-    this.http.get<{ maxId: number }>('http://localhost:3000/max-id').subscribe((jsonData) => {
+    this.http.get<{ maxId: string }>('http://localhost:3000/max-id').subscribe((jsonData) => {
       diaryEntry.id = jsonData.maxId + 1;
       this.http.post<{ message: string }>('http://localhost:3000/add-entry', diaryEntry).subscribe(res => {
         this.getDiaryEntries();
@@ -57,7 +57,7 @@ export class DiaryDataService {
 
   }
 
-  getDiaryEntry(id: number) {
+  getDiaryEntry(id: string) {
      const index = this.diaryEntries.findIndex(el => {
        return el.id == id
      });
@@ -67,7 +67,7 @@ export class DiaryDataService {
 
   }
 
-  onUpdateEntry(index: number, entry: DiaryEntry) {
+  onUpdateEntry(index: string, entry: DiaryEntry) {
     this.http.put<{message: string}>('htttp://localhost:3000/update-entry/'+ identifierName, entry).subscribe( jsonData => {
       console.log(jsonData.message);
       this.getDiaryEntries();

@@ -24,13 +24,13 @@ export class DiaryComponent implements OnInit {
     
   }
 
-  onDelete(index: number) {
+  onDelete(index: string) {
       this.diarySrv.onDeleteEntry(index);
       console.log(index)
       this.diaryEntries = this.diarySrv.diaryEntries;
   }
 
-  onEdit(index: number) {
+  onEdit(index: string) {
       this.router.navigate(["edit", index]);
   }
 
