@@ -11,10 +11,15 @@ export class DiaryComponent implements OnInit {
 
   diaryEntries!: DiaryEntry[];
 
-  constructor(private diaryStrv: DiaryDataService) { }
+  constructor(private diarySrv: DiaryDataService) { }
 
   ngOnInit(): void {
-    this.diaryEntries = this.diaryStrv.diaryEntry;
+    this.diaryEntries = this.diarySrv.diaryEntry;
+  }
+
+  onDelete(index: number) {
+      this.diarySrv.onDelete(index);
+      this.diaryEntries = this.diarySrv.diaryEntry;
   }
 
 }
