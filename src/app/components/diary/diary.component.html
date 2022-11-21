@@ -14,7 +14,7 @@
         <td>{{diary.date}}</td>
         <td>{{diary.entry}}</td>
         <td>
-            <button class="btn btn-light">Edit</button>
+            <button class="btn btn-light" (click)="onEdit(i)">Edit</button>
             <button class="btn btn-danger" (click)="onDelete(i)">Remove</button>
         </td>
       </tr>

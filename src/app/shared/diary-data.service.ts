@@ -21,4 +21,9 @@ export class DiaryDataService {
     this.diaryEntries.splice(index, 1);
     this.diarySubject.next(this.diaryEntries);
   }
+// push() used to add an element into an array
+  onAddDiaryEntry(diaryEntry: DiaryEntry) {
+      this.diaryEntries.push(diaryEntry);
+      this.diarySubject.next(this.diaryEntries);
+  }
 }
