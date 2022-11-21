@@ -30,4 +30,9 @@ export class DiaryDataService {
   getDiaryEntry(index: number) {
     return {...this.diaryEntries[index]}
   }
+
+  onUpdateEntry(paramId: number, newEntry: DiaryEntry) {
+      this.diaryEntries[paramId] = newEntry;
+      this.diarySubject.next(this.diaryEntries);
+  }
 }

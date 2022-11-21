@@ -36,10 +36,13 @@ export class DiaryFormComponent implements OnInit {
   }
 
   onSubmit() {
-    
     const newEntry = new DiaryEntry(this.diaryForm.value.date, this.diaryForm.value.entry);
-    console.log(newEntry);
-    this.diarySrv.onAddDiaryEntry(newEntry);
+    if(this.editMode) {
+        this.diarySrv.onUpdateEntry(this.paramId, newEntry)
+    } else {
+      this.diarySrv.onAddDiaryEntry(newEntry);
+    }
+   
     this.router.navigateByUrl("/");
   }
 
