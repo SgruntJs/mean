@@ -55,7 +55,7 @@ diaryEntries = [
   })
 
   app.put('/update-entry/:id', (req, res) => {
-    const updatedEntry = new DiaryEntryModel( {date: req.body.date, entry: req.body.entry});
+    const updatedEntry = new DiaryEntryModel( {_id: req.body.id, date: req.body.date, entry: req.body.entry});
     // const index = diaryEntries.findIndex( el => {
     //     return el.id == req.params.id;
     // });
