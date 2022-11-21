@@ -20,14 +20,14 @@ export class DiaryFormComponent implements OnInit {
   constructor(private diarySrv: DiaryDataService, private router: Router, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.ActivatedRoute.paramMap.subscribe( (paramMap: ParamMap) => {
-        if(paramMap.has('id')) {
-              this.editMode = true;
-              this.paramId = paramMap.get('id')!;// dato che è una string lo trasformaimo in number con il + e il ! che dic eche non è null
-              this.diaryEntry = this.diarySrv.getDiaryEntry(this.paramId);
-            } else {
-          this.editMode = false;
-        }
+    this.ActivatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('id')) {
+        this.editMode = true;
+        this.paramId = paramMap.get('id')!;// dato che è una string lo trasformaimo in number con il + e il ! che dic eche non è null
+        this.diaryEntry = this.diarySrv.getDiaryEntry(this.paramId);
+      } else {
+        this.editMode = false;
+      }
     });
     this.diaryForm = new FormGroup({
       "date": new FormControl(this.editMode ? this.diaryEntry.date : '', [Validators.required]),
@@ -36,14 +36,15 @@ export class DiaryFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const entry = new DiaryEntry( '', this.diaryForm.value.date, this.diaryForm.value.entry);
-    if(this.editMode) {
+    const entry = new DiaryEntry('', this.diaryForm.value.date, this.diaryForm.value.entry);
+    if (this.editMode) {
       entry.id = this.paramId;
-        this.diarySrv.onUpdateEntry(this.paramId, entry)
+      this.diarySrv.onUpdateEntry(this.paramId, entry)
     } else {
       this.diarySrv.onAddDiaryEntry(entry);
+      console.log('entry', entry)
     }
-   
+    // console.log('entry', entry)
     this.router.navigateByUrl("/");
   }
 

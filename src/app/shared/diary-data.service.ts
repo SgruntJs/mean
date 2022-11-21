@@ -18,7 +18,7 @@ export class DiaryDataService {
   diaryEntries!: DiaryEntry[];
 
   onDeleteEntry(id: string) {
-    this.http.delete<{ message: string }>('htttp://localhost:3000/remove-entry/' + id)
+    this.http.delete<{ message: string }>('http://localhost:3000/remove-entry/' + id)
     .subscribe(jsondata => {
       this.getDiaryEntries();
       console.log('delete');
@@ -68,7 +68,7 @@ export class DiaryDataService {
   }
 
   onUpdateEntry(index: string, entry: DiaryEntry) {
-    this.http.put<{message: string}>('htttp://localhost:3000/update-entry/'+ identifierName, entry).subscribe( jsonData => {
+    this.http.put<{message: string}>('http://localhost:3000/update-entry/'+ index, entry).subscribe( jsonData => {
       console.log(jsonData.message);
       this.getDiaryEntries();
     })

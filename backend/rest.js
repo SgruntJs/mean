@@ -3,7 +3,7 @@ const  DiaryEntryModel = require('./entry-schema');
 const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
-const { find } = require('./entry-schema');
+const { find, update} = require('./entry-schema');
 
 const app = express();
 mongoose.connect("mongodb+srv://admin:cicciomerda1@cluster0.jqvxi6z.mongodb.net/diarydb?retryWrites=true&w=majority")
@@ -15,9 +15,9 @@ mongoose.connect("mongodb+srv://admin:cicciomerda1@cluster0.jqvxi6z.mongodb.net/
 
 // retrieving data
 diaryEntries = [
-    {id: 1,date:"Jan 1st", entry: "Entry 1"},
-    {id: 2,date:"march 1st", entry: "Entry 2"},
-    {id: 3,date:"April 1st", entry: "Entry 3"}
+    {id: 1, date:"Jan 1st", entry: "Entry 1"},
+    {id: 2, date:"march 1st", entry: "Entry 2"},
+    {id: 3, date:"April 1st", entry: "Entry 3"}
   ];
 
   app.use(bodyParser.json());
@@ -72,11 +72,14 @@ diaryEntries = [
   app.post('/add-entry', (req, res) => {
     const diaryEntry = new DiaryEntryModel( {date: req.body.date, entry: req.body.entry});
     console.log(diaryEntry);
-    diaryEntry.save();
-    diaryEntries.push({ id: req.body.id, date: req.body.date, entry: req.body.entry});
-    res.status(200).json({
-        message: 'Post submitted'
-    })
+    diaryEntry.save()
+    .then(() => {
+        res.status(200).json({
+            message: 'Post submitted'
+        })
+    });
+    //diaryEntries.push({ id: req.body.id, date: req.body.date, entry: req.body.entry});
+    
   });
 
 // register a URI
