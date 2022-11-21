@@ -9,12 +9,12 @@ export class DiaryDataService {
 
   constructor() { }
 
-  diarySubject = new Subject<DiaryEntry[]>();
+  public diarySubject = new Subject<DiaryEntry[]>();
 
   diaryEntries: DiaryEntry[] = [
-    new DiaryEntry("Jan 1st", "Entry 1"),
-    new DiaryEntry("Jan 2nd", "Entry 2"),
-    new DiaryEntry("Feb 22nd", "Entry 3"),
+    new DiaryEntry(1, "Jan 1st", "Entry 1"),
+    new DiaryEntry(2,"Jan 2nd", "Entry 2"),
+    new DiaryEntry(3,"Feb 22nd", "Entry 3"),
   ]
 
   onDelete(index: number) {
