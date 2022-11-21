@@ -3,6 +3,7 @@ const  DiaryEntryModel = require('./entry-schema');
 const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
+const { find } = require('./entry-schema');
 
 const app = express();
 mongoose.connect("mongodb+srv://admin:cicciomerda1@cluster0.jqvxi6z.mongodb.net/diarydb?retryWrites=true&w=majority")
@@ -62,6 +63,7 @@ diaryEntries = [
   app.post('/add-entry', (req, res) => {
     const diaryEntry = new DiaryEntryModel( {date: req.body.date, entry: req.body.entry});
     console.log(diaryEntry);
+    diaryEntry.save();
     diaryEntries.push({ id: req.body.id, date: req.body.date, entry: req.body.entry});
     res.status(200).json({
         message: 'Post submitted'
@@ -69,8 +71,11 @@ diaryEntries = [
   });
 
 // register a URI
-app.use('/diary-entries',(req, res, next) => {
-    res.json({'diaryEntries': diaryEntries});
+app.get('/diary-entries',(req, res, next) => {
+    DiaryEntryModel.find().then( (data) => {
+        res.json({'diaryEntries': data});
+    })
+    
 })
 
 module.exports = app;
