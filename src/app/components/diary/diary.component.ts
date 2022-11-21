@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DiaryDataService } from 'src/app/shared/diary-data.service';
+import { DiaryEntry } from 'src/app/shared/diary-entry.model';
 
 @Component({
   selector: 'app-diary',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiaryComponent implements OnInit {
 
-  constructor() { }
+  diaryEntries!: DiaryEntry[];
+
+  constructor(private diaryStrv: DiaryDataService) { }
 
   ngOnInit(): void {
+    this.diaryEntries = this.diaryStrv.diaryEntry;
   }
 
 }
