@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { identifierName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DiaryEntry } from './diary-entry.model';
@@ -17,7 +18,8 @@ export class DiaryDataService {
   diaryEntries!: DiaryEntry[];
 
   onDeleteEntry(id: number) {
-    this.http.delete<{ message: string }>('htttp://localhost:3000/remove-entry/' + id).subscribe(jsondata => {
+    this.http.delete<{ message: string }>('htttp://localhost:3000/remove-entry/' + id)
+    .subscribe(jsondata => {
       this.getDiaryEntries();
       console.log('delete');
     })
@@ -55,8 +57,12 @@ export class DiaryDataService {
 
   }
 
-  onUpdateEntry(paramId: number, newEntry: DiaryEntry) {
-    this.diaryEntries[paramId] = newEntry;
-    this.diarySubject.next(this.diaryEntries);
+  onUpdateEntry(index: number, entry: DiaryEntry) {
+    this.http.put<{message: string}>('htttp://localhost:3000/update-entry/'+ identifierName, entry).subscribe( jsonData => {
+      console.log(jsonData.message);
+      this.getDiaryEntries();
+    })
+    // this.diaryEntries[paramId] = newEntry;
+    // this.diarySubject.next(this.diaryEntries);
   }
 }

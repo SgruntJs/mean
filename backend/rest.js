@@ -1,8 +1,16 @@
 const express = require('express');
+const  DiaryEntryModel = require('./entry-schema');
+const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
 
 const app = express();
+mongoose.connect("mongodb+srv://admin:cicciomerda1@cluster0.jqvxi6z.mongodb.net/diarydb?retryWrites=true&w=majority")
+.then( () => {
+    console.log('connected to mongo')
+}).catch( () => {
+    console.log('Error to conenct to MongoDb')
+})
 
 // retrieving data
 diaryEntries = [
@@ -52,6 +60,8 @@ diaryEntries = [
   })
 
   app.post('/add-entry', (req, res) => {
+    const diaryEntry = new DiaryEntryModel( {date: req.body.date, entry: req.body.entry});
+    console.log(diaryEntry);
     diaryEntries.push({ id: req.body.id, date: req.body.date, entry: req.body.entry});
     res.status(200).json({
         message: 'Post submitted'
