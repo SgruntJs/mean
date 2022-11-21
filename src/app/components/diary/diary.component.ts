@@ -17,10 +17,11 @@ export class DiaryComponent implements OnInit {
   constructor(private diarySrv: DiaryDataService, private router: Router) { }
 
   ngOnInit(): void {
+    this.diarySrv.getDiaryEntries();
     this.diarySubscription = this.diarySrv.diarySubject.subscribe(diaryEntries => {
       this.diaryEntries = diaryEntries;
     });
-    this.diaryEntries = this.diarySrv.diaryEntries;
+    
   }
 
   onDelete(index: number) {

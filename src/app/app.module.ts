@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { DiaryComponent } from './components/diary/diary.component';
 import { DiaryFormComponent } from './components/diary-form/diary-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
