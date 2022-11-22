@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Menu } from 'models/menu.model';
+import { Menu } from 'src/models/menu.model';
 import { MenuService } from 'src/app/services/menu/menu.service';
 
 @Component({
