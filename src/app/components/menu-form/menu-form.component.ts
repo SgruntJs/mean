@@ -49,29 +49,29 @@ export class MenuFormComponent implements OnInit {
 
       }
     });
-   this.menuItem$.subscribe(res => {
-    console.log(res);
-    this.menuForm = new FormGroup({
-      "giorno": new FormControl(this.editMode ? this.menuItem.giorno : '', [Validators.required]),
-      "primo1": new FormControl(this.editMode ? this.menuItem.primo1 : '', [Validators.required]),
-      "primo2": new FormControl(this.editMode ? this.menuItem.primo2 : '', [Validators.required]),
-      "primo3": new FormControl(this.editMode ? this.menuItem.primo3 : '', [Validators.required]),
-      "secondo1": new FormControl(this.editMode ? this.menuItem.secondo1 : '', [Validators.required]),
-      "secondo2": new FormControl(this.editMode ? this.menuItem.secondo2 : '', [Validators.required]),
-      "secondo3": new FormControl(this.editMode ? this.menuItem.secondo3 : '', [Validators.required]),
-    
-   });
-  });
+    this.menuItem$.subscribe(res => {
+      console.log(res);
+      this.menuForm = new FormGroup({
+        "giorno": new FormControl(this.editMode ? this.menuItem.giorno : '', [Validators.required]),
+        "primo1": new FormControl(this.editMode ? this.menuItem.primo1 : '', [Validators.required]),
+        "primo2": new FormControl(this.editMode ? this.menuItem.primo2 : '', [Validators.required]),
+        "primo3": new FormControl(this.editMode ? this.menuItem.primo3 : '', [Validators.required]),
+        "secondo1": new FormControl(this.editMode ? this.menuItem.secondo1 : '', [Validators.required]),
+        "secondo2": new FormControl(this.editMode ? this.menuItem.secondo2 : '', [Validators.required]),
+        "secondo3": new FormControl(this.editMode ? this.menuItem.secondo3 : '', [Validators.required]),
+
+      });
+    });
 
     this.menuForm = new FormGroup({
-       //"giorno": new FormControl(this.editMode ? this.menuItem.giorno : '', [Validators.required]),
+      //"giorno": new FormControl(this.editMode ? this.menuItem.giorno : '', [Validators.required]),
       // "primo1": new FormControl(this.editMode ? this.menuItem.primo1 : '', [Validators.required]),
       // "primo2": new FormControl(this.editMode ? this.menuItem.primo2 : '', [Validators.required]),
       // "primo3": new FormControl(this.editMode ? this.menuItem.primo3 : '', [Validators.required]),
       // "secondo1": new FormControl(this.editMode ? this.menuItem.secondo1 : '', [Validators.required]),
       // "secondo2": new FormControl(this.editMode ? this.menuItem.secondo2 : '', [Validators.required]),
       // "secondo3": new FormControl(this.editMode ? this.menuItem.secondo3 : '', [Validators.required]),
-       "giorno": new FormControl(null, [Validators.required]),
+      "giorno": new FormControl(null, [Validators.required]),
       "primo1": new FormControl(null, [Validators.required]),
       "primo2": new FormControl(null, [Validators.required]),
       "primo3": new FormControl(null, [Validators.required]),
@@ -111,8 +111,18 @@ export class MenuFormComponent implements OnInit {
       this.menuForm.value.secondo2,
       this.menuForm.value.secondo3,
     );
-    this.menuSrv.postMenu(menu);
-    this.router.navigateByUrl('/lista-menu');
+    if (this.editMode) {
+      menu._id = this.paramId;
+      this.menuSrv.updateMenu(this.paramId, menu).subscribe(
+        () => {
+          this.menuSrv.getMenu();
+          console.log(menu);
+        }
+      );
+    } else {
+      this.menuSrv.postMenu(menu);
+    }
+    //this.router.navigateByUrl('/lista-menu');
   }
 
 }

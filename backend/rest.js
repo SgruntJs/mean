@@ -94,7 +94,7 @@ diaryEntries = [
 
   app.put('/update-menu/:id', (req, res) => {
     const updatedMenu = new MenuModel( {
-        _id: req.body.id, 
+        _id: req.body._id, 
         giorno: req.body.giorno, 
         primo1: req.body.primo1,
         primo2: req.body.primo2,
@@ -103,7 +103,7 @@ diaryEntries = [
         secondo2: req.body.secondo2,
         secondo3: req.body.secondo2,
     });
-    MenuModel.updateOne({_id: req.body.id}, updatedMenu)
+    MenuModel.updateOne({_id: req.body._id}, updatedMenu)
     .then(() => {
         res.status(200).json({
             message: 'post edited'
