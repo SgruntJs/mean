@@ -101,7 +101,7 @@ diaryEntries = [
         primo3: req.body.primo3,
         secondo1: req.body.secondo1,
         secondo2: req.body.secondo2,
-        secondo3: req.body.secondo2,
+        secondo3: req.body.secondo3,
     });
     MenuModel.updateOne({_id: req.body._id}, updatedMenu)
     .then(() => {

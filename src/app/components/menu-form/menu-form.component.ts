@@ -64,13 +64,6 @@ export class MenuFormComponent implements OnInit {
     });
 
     this.menuForm = new FormGroup({
-      //"giorno": new FormControl(this.editMode ? this.menuItem.giorno : '', [Validators.required]),
-      // "primo1": new FormControl(this.editMode ? this.menuItem.primo1 : '', [Validators.required]),
-      // "primo2": new FormControl(this.editMode ? this.menuItem.primo2 : '', [Validators.required]),
-      // "primo3": new FormControl(this.editMode ? this.menuItem.primo3 : '', [Validators.required]),
-      // "secondo1": new FormControl(this.editMode ? this.menuItem.secondo1 : '', [Validators.required]),
-      // "secondo2": new FormControl(this.editMode ? this.menuItem.secondo2 : '', [Validators.required]),
-      // "secondo3": new FormControl(this.editMode ? this.menuItem.secondo3 : '', [Validators.required]),
       "giorno": new FormControl(null, [Validators.required]),
       "primo1": new FormControl(null, [Validators.required]),
       "primo2": new FormControl(null, [Validators.required]),
@@ -115,7 +108,7 @@ export class MenuFormComponent implements OnInit {
       menu._id = this.paramId;
       this.menuSrv.updateMenu(this.paramId, menu).subscribe(
         () => {
-          this.menuSrv.getMenu();
+          this.retrieveDataMenu();
           console.log(menu);
         }
       );
