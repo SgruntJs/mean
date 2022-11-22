@@ -1,7 +1,7 @@
 export class Menu {
     constructor(
-        public id: string,
-        public giorno: Date,
+        public _id: string,
+        public giorno: string,
         public primo1: string,
         public primo2: string,
         public primo3: string,

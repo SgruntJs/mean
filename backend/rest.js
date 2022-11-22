@@ -83,6 +83,35 @@ diaryEntries = [
     
   });
 
+  app.delete('/remove-menu/:id', (req, res) => {
+    MenuModel.deleteOne({_id: req.params.id})
+    .then( () => {
+        res.status(200).json({
+            message: 'Menu Deleted'
+        })
+    })     
+  })
+
+  app.put('/update-menu/:id', (req, res) => {
+    const updatedMenu = new MenuModel( {
+        _id: req.body.id, 
+        giorno: req.body.giorno, 
+        primo1: req.body.primo1,
+        primo2: req.body.primo2,
+        primo3: req.body.primo3,
+        secondo1: req.body.secondo1,
+        secondo2: req.body.secondo2,
+        secondo3: req.body.secondo2,
+    });
+    MenuModel.updateOne({_id: req.body.id}, updatedMenu)
+    .then(() => {
+        res.status(200).json({
+            message: 'post edited'
+        })
+    });
+    
+  })
+
   app.post('/add-menu', (req, res) => {
     const newMenu = new MenuModel( {
         giorno: req.body.giorno, 

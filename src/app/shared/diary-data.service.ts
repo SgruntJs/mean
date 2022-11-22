@@ -52,15 +52,13 @@ export class DiaryDataService {
       this.diaryEntries = updateResponse;
       this.diarySubject.next(this.diaryEntries);
     });
-
-
-
   }
 
   getDiaryEntry(id: string) {
      const index = this.diaryEntries.findIndex(el => {
        return el.id == id
      });
+     console.log('this.diaryEntries',this.diaryEntries);
      return this.diaryEntries[index];
 
     // return {...this.diaryEntries[id]}

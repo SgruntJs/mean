@@ -18,12 +18,13 @@
                             </div>
                         </div>
                         <ol class="widget-49-meeting-points">
-                            <li class="widget-49-meeting-item"><span>Expand module is removed</span></li>
+                            <li class="widget-49-meeting-item"><span>{{m.primo1}}</span></li>
                             <li class="widget-49-meeting-item"><span>Data migration is in scope</span></li>
                             <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
                         </ol>
                         <div class="widget-49-meeting-action">
-                            <button  class="btn btn-primary">Modifica</button>
+                            <button  class="btn btn-danger" (click)="removeMenu(m._id)">Elimina</button>
+                            <button  class="btn btn-primary" (click)="onUpdateMenu(m._id)">Modifica</button>
                         </div>
                     </div>
                 </div>

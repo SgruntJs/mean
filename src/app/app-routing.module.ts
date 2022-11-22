@@ -21,6 +21,9 @@ const routes: Routes = [
   {
     path:"lista-menu", component: MenuListComponent
   },
+  {
+    path:"edit-menu/:id", component: MenuFormComponent
+  },
 ];
 
 @NgModule({
