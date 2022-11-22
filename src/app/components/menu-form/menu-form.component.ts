@@ -122,7 +122,7 @@ export class MenuFormComponent implements OnInit {
     } else {
       this.menuSrv.postMenu(menu);
     }
-    //this.router.navigateByUrl('/lista-menu');
+    this.router.navigateByUrl('/lista-menu');
   }
 
 }

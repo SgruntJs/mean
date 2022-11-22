@@ -1,4 +1,5 @@
 <div class="container">
+    <h1>Lista dei menu salvati</h1>
     <div class="row" *ngIf="menu">
         <div class="col-lg-4" *ngFor="let m of menu">
             <div class="card card-margin">
@@ -9,8 +10,8 @@
                     <div class="widget-49">
                         <div class="widget-49-title-wrapper">
                             <div class="widget-49-date-primary">
-                                <span class="widget-49-date-day">09</span>
-                                <span class="widget-49-date-month">apr</span>
+                                <span class="widget-49-date-day">{{m.giorno | slice:8:10}}</span>
+                                <span class="widget-49-date-month">{{m.giorno | date:'MMM'}}</span>
                             </div>
                             <div class="widget-49-meeting-info">
                                 <span class="widget-49-pro-title">PRO-08235 DeskOpe. Website</span>
