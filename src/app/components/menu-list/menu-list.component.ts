@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
+import { DataService } from 'src/app/services/data/data.service';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { Menu } from 'src/models/menu.model';
 
@@ -13,9 +14,12 @@ export class MenuListComponent implements OnInit {
 
   menu: Menu[] = [];
 
-  constructor(private menuSrv: MenuService, private router: Router) { }
+  constructor(private menuSrv: MenuService, private router: Router, private dataSrv: DataService) { }
 
   ngOnInit(): void {
+    this.dataSrv.onReceiveTrueEdited().subscribe(res => {
+      this.showAllMenu();
+    });
     this.showAllMenu();
   }
 

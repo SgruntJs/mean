@@ -4,6 +4,7 @@ import { Menu } from 'src/models/menu.model';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { Router, ActivatedRoute, ParamMap, } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-menu-form',
@@ -22,12 +23,12 @@ export class MenuFormComponent implements OnInit {
 
   menuItem$ = new Subject<Menu>;
 
-  constructor(private menuSrv: MenuService, private router: Router, private ActivatedRoute: ActivatedRoute) {
+  constructor(private menuSrv: MenuService, private router: Router, private ActivatedRoute: ActivatedRoute, private dataSrv: DataService) {
 
   }
 
   ngOnInit(): void {
-
+   
     this.retrieveDataMenu();
 
     this.ActivatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
@@ -109,7 +110,7 @@ export class MenuFormComponent implements OnInit {
       this.menuSrv.updateMenu(this.paramId, menu).subscribe(
         () => {
           this.retrieveDataMenu();
-          console.log(menu);
+          this.dataSrv.onSendTrueUpdate(true);
         }
       );
     } else {
