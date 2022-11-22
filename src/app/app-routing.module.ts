@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DiaryFormComponent } from './components/diary-form/diary-form.component';
 import { DiaryComponent } from './components/diary/diary.component';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
+import { MenuListComponent } from './components/menu-list/menu-list.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,10 @@ const routes: Routes = [
   },
   {
     path:"aggiungi-menu", component: MenuFormComponent
-  }
+  },
+  {
+    path:"lista-menu", component: MenuListComponent
+  },
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MenuListComponent } from './components/menu-list/menu-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent,
     DiaryComponent,
     DiaryFormComponent,
-    MenuFormComponent
+    MenuFormComponent,
+    MenuListComponent
   ],
   imports: [
     BrowserModule,

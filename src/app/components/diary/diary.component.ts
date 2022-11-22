@@ -20,6 +20,7 @@ export class DiaryComponent implements OnInit {
     this.diarySrv.getDiaryEntries();
     this.diarySubscription = this.diarySrv.diarySubject.subscribe(diaryEntries => {
       this.diaryEntries = diaryEntries;
+      console.log('this.diaryEntries', this.diaryEntries)
     });
     
   }

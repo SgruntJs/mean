@@ -16,6 +16,6 @@ export class MenuService {
   }
 
   getMenu(){
-    return this.http.get<Menu[]>(`http://localhost:3000/menu-list`);
+    return this.http.get<any>(`http://localhost:3000/menu-list`);
   }
 }

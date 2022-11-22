@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Menu } from 'src/models/menu.model';
 import { MenuService } from 'src/app/services/menu/menu.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-form',
@@ -12,7 +13,7 @@ export class MenuFormComponent implements OnInit {
 
   menuForm!: FormGroup;
 
-  constructor(private menuSrv: MenuService) { }
+  constructor(private menuSrv: MenuService, private router: Router) { }
 
   ngOnInit(): void {
     this.menuForm = new FormGroup({
@@ -43,6 +44,7 @@ export class MenuFormComponent implements OnInit {
       this.menuForm.value.secondo3,
       );
     this.menuSrv.postMenu(menu);
+    this.router.navigateByUrl('/');
   }
 
 }
