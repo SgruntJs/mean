@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const menuSchema = mongoose.Schema({
-    giorno: String,
+    giorno: Date,
     primo1: String,
     primo2: String,
     primo3: String,

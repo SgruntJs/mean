@@ -28,6 +28,13 @@ export class MenuListComponent implements OnInit {
       .subscribe( updateRes => {
         this.menu = updateRes.menu;
         console.log(this.menu);
+        //funzione per mettere in ordine di data
+        this.menu.sort(function(a, b){
+          var aa = a.giorno.split('-').reverse().join(),
+              bb = b.giorno.split('-').reverse().join();
+          return aa < bb ? -1 : (aa > bb ? 1 : 0);
+          });
+        console.log(this.menu);
       });
   }
 
