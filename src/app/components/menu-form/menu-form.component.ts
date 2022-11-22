@@ -23,7 +23,11 @@ export class MenuFormComponent implements OnInit {
       "secondo1": new FormControl(null, [Validators.required]),
       "secondo2": new FormControl(null, [Validators.required]),
       "secondo3": new FormControl(null, [Validators.required]),
-    })
+    });
+
+    this.menuSrv.getMenu().subscribe( res => {
+      console.log(res);
+    });
   }
 
   onSubmit() {
