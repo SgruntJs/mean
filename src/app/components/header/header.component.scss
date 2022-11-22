@@ -1,0 +1,15 @@
+.header {
+    background-color: #0014dc;
+    color: #fff;
+    .nav-link {
+        color: #fff;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .navbar-brand {
+        font-family: 'Rubik Microbe', cursive;
+        color: #fff;
+        font-size: 30px;
+    }
+}
