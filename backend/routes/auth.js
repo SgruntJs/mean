@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const authModelSchema = require('../models/authModel');
 const secretKey = "fjihrwirheiu#@R$dnjf$%dkns@3nfwj4vsv";
+const verifyToken = require('../verifyToken');
 
 router.post('/login', async(req, res) => {
     const username = req.body.username;
@@ -28,6 +29,14 @@ router.post('/login', async(req, res) => {
         res.json({status: 'error', data: 'something went wrong'})
     })
 });
+
+router.get('/aggiungi-menu', verifyToken, async(req, res) => {
+    if(req && req.decodedToken) {
+        res.json({ satus: 'ok', data: 'ok'})
+    } else {
+        res.json({ satus: 'error', data: 'error'})
+    }
+})
 
 router.post('/register', async (req, res) => {
     const registerUserData = {
