@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DiaryFormComponent } from './components/diary-form/diary-form.component';
 import { DiaryComponent } from './components/diary/diary.component';
@@ -17,13 +18,13 @@ const routes: Routes = [
     path:"edit/:id", component: DiaryFormComponent
   },
   {
-    path:"aggiungi-menu", component: MenuFormComponent
+    path:"aggiungi-menu", component: MenuFormComponent, canActivate: [AuthGuard]
   },
   {
-    path:"lista-menu", component: MenuListComponent
+    path:"lista-menu", component: MenuListComponent, canActivate: [AuthGuard]
   },
   {
-    path:"edit-menu/:id", component: MenuFormComponent
+    path:"edit-menu/:id", component: MenuFormComponent, canActivate: [AuthGuard]
   },
   {
     path:"admin", component: AdminLoginComponent

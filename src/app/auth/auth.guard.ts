@@ -8,18 +8,21 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authSrv: AuthService, private router: Router) {
+  constructor( private router: Router) {
 
   }
+
+
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot) {
-   if(this.authSrv.isLoggedIn) {
-    return true
-   } else {
-    this.router.navigate(['login'])
-   }
-   return false
-  }
+  ) {
+    if(localStorage.getItem('token')) {
+      return true
+    } else {
+      this.router.navigate(['admin']);
+      return false;
+    }
+   
+    }
+  
   
 }
