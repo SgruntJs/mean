@@ -18,7 +18,10 @@ form {
   flex-direction: column;
   align-items: flex-start;
   padding-bottom: 20px;
-  width: 300px;
+  width: 100%;
+  @include respond-to(desktop) {
+    width: 300px;
+  }
   h4 {
     margin-bottom: 20px;
     color: rgba(#000, 0.5);
@@ -178,7 +181,7 @@ $displacement: 3px;
   .session {
     display: flex;
     flex-direction: row;
-    width: 520px;
+    width: 100%;
     height: auto;
     margin: auto auto;
     background: #ffffff;
@@ -189,9 +192,12 @@ $displacement: 3px;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
+    @include respond-to(desktop) {
+      width: 520px;
+    }
   }
   .left {
-    width: 220px;
+    display: none;
     height: auto;
     min-height: 100%;
     position: relative;
@@ -199,6 +205,10 @@ $displacement: 3px;
     background-size: cover;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+    @include respond-to(desktop) {
+      width: 220px;
+      display: block;
+    }
     svg {
       height: 40px;
       width: auto;
