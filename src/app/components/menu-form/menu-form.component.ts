@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Menu } from 'src/models/menu.model';
+import { Menu } from 'src/app/models/menu.model';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { Router, ActivatedRoute, ParamMap, } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';

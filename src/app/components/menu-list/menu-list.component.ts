@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { DataService } from 'src/app/services/data/data.service';
 import { MenuService } from 'src/app/services/menu/menu.service';
-import { Menu } from 'src/models/menu.model';
+import { Menu } from 'src/app/models/menu.model';
 
 @Component({
   selector: 'app-menu-list',

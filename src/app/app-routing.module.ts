@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DiaryFormComponent } from './components/diary-form/diary-form.component';
 import { DiaryComponent } from './components/diary/diary.component';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
@@ -23,6 +24,9 @@ const routes: Routes = [
   },
   {
     path:"edit-menu/:id", component: MenuFormComponent
+  },
+  {
+    path:"admin", component: AdminLoginComponent
   },
 ];
 

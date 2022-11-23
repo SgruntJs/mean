@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MenuListComponent } from './components/menu-list/menu-list.component';
     DiaryComponent,
     DiaryFormComponent,
     MenuFormComponent,
-    MenuListComponent
+    MenuListComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
