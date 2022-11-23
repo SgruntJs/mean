@@ -8,13 +8,10 @@ import { Admin } from '../models/admin.model';
 })
 export class AuthService {
   isLoggedIn = true;
-  adminCuoco;
+
 
   constructor(private http: HttpClient, private router: Router) {
-    this.adminCuoco = {
-      username: "cuocoadmin",
-      password: 'password'
-    }
+ 
   }
 
   login(username: string, password: string) {
