@@ -3,7 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const authModelSchema = require('../models/authModel');
-const secretKey = "fjihrwirheiu#@R$dnjf$%dkns@3nfwj4vsv";
+//const secretKey = "fjihrwirheiu#@R$dnjf$%dkns@3nfwj4vsv";
+const secretKey = "sZlB8/BoHRn7QoQoLrhET+Yu2bHIDi4eJyYEcHTqzp2QlyOW9LTO1Fwuw0tr/XG2jXvPy4c/GVG2H7RZLCXKMY8rhTaOtl3PpC5hIckmOSVDlHX/nVBXQ+rcoGr8Bvlo2o6fcpLkKngxG5RX0OrCrfeNiy1CyiqFcYdbaFZt1XKyQ30aq5vn2GuyNixaDMn6gOZQAacqJU7VGjcpvZWf+Cm+tUMpFmZ+qYsybDfa7dBvdTlUcB3agONiqQNwb7lCHlECkEbXf9iTeT0iGxo04SCaMuk6CcZccIR5+IPppfuAg2jis7f/rZHjJBl2GltVNs3ev41INk6qJonQpttv0w==";
 const verifyToken = require('../verifyToken');
 
 router.post('/login', async(req, res) => {
@@ -32,9 +33,9 @@ router.post('/login', async(req, res) => {
 
 router.get('/aggiungi-menu', verifyToken, async(req, res) => {
     if(req && req.decodedToken) {
-        res.json({ satus: 'ok', data: 'ok'})
+        res.json({ status: 'ok', data: 'ok'})
     } else {
-        res.json({ satus: 'error', data: 'error'})
+        res.json({ status: 'error', data: 'error'})
     }
 })
 

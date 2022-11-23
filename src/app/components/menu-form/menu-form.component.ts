@@ -39,17 +39,9 @@ export class MenuFormComponent implements OnInit {
     this.api.goToAreaRiservata(localStorage.getItem('token')).subscribe( (res: any) => {
       if( res && res['status'] === 'ok') {
         console.log('we are in the manu form area riservata');
-        this.router.navigate(['/admin']);
+        
       }
-    }
-    , (err) => {
-      if(err) {
-        console.log('something is go to affancul');
-      }
-    }
-
-      )
-   
+    })
     this.retrieveDataMenu();
 
     this.ActivatedRoute.paramMap.subscribe((paramMap: ParamMap) => {

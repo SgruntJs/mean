@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DropDownAnimation } from "../../animation";
 import { HostListener } from "@angular/core";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +13,10 @@ export class HeaderComponent implements OnInit {
   navbarOpen = false;
   screenWidth!: number;
 
-  constructor() {
+  constructor(private router: Router) {
     this.onResize();
-    
-   }
+
+  }
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
@@ -28,11 +29,17 @@ export class HeaderComponent implements OnInit {
   onResize() {
     this.screenWidth = window.innerWidth;
     // console.log(this.screenWidth);
-    if(this.screenWidth > 992) {
+    if (this.screenWidth > 992) {
       this.navbarOpen = true;
     } else {
       this.navbarOpen = false;
     }
+  }
+
+
+  onLogout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/admin'])
   }
 
 }

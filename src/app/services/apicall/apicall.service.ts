@@ -24,7 +24,7 @@ export class ApicallService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get('http://localhost:3000/auth/login', {headers: headers})
+    return this.http.get('http://localhost:3000/auth/aggiungi-menu', {headers: headers})
 
   }
 }

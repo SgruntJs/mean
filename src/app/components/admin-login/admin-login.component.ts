@@ -30,10 +30,6 @@ export class AdminLoginComponent implements OnInit {
           localStorage.setItem('token', res['data']['authToken']);
           this.router.navigate(['/aggiungi-menu']);
         }
-      }, err => {
-        if(err) {
-          console.log('something is go to affancul in admin');
-        }
       })
     }
       console.log(this.loginForm.value);
