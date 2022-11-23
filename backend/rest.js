@@ -7,6 +7,10 @@ const bodyParser = require('body-parser');
 const { find, update} = require('./entry-schema');
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 mongoose.connect("mongodb+srv://admin:cicciomerda1@cluster0.jqvxi6z.mongodb.net/diarydb?retryWrites=true&w=majority")
 .then( () => {
     console.log('connected to mongo')
