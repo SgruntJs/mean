@@ -70,7 +70,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "my-mensa:build:production"
+              "browserTarget": "my-mensa:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
               "browserTarget": "my-mensa:build:development"

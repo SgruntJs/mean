@@ -5,6 +5,7 @@ import { MenuService } from 'src/app/services/menu/menu.service';
 import { Router, ActivatedRoute, ParamMap, } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { DataService } from 'src/app/services/data/data.service';
+import { ApicallService } from 'src/app/services/apicall/apicall.service';
 
 @Component({
   selector: 'app-menu-form',
@@ -23,11 +24,31 @@ export class MenuFormComponent implements OnInit {
 
   menuItem$ = new Subject<Menu>;
 
-  constructor(private menuSrv: MenuService, private router: Router, private ActivatedRoute: ActivatedRoute, private dataSrv: DataService) {
+  constructor(
+    private menuSrv: MenuService, 
+    private router: Router, 
+    private ActivatedRoute: ActivatedRoute, 
+    private dataSrv: DataService,
+    private api: ApicallService
+    ) {
 
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token'))
+    this.api.goToAreaRiservata(localStorage.getItem('token')).subscribe( (res: any) => {
+      if( res && res['status'] === 'ok') {
+        console.log('we are in the manu form area riservata');
+        this.router.navigate(['/admin']);
+      }
+    }
+    , (err) => {
+      if(err) {
+        console.log('something is go to affancul');
+      }
+    }
+
+      )
    
     this.retrieveDataMenu();
 

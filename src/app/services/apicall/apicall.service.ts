@@ -19,7 +19,7 @@ export class ApicallService {
     return this.http.post(`http://localhost:3000/auth/register`, adminData);
   }
 
-  goToAreaRiservata(token: string) {
+  goToAreaRiservata(token: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
