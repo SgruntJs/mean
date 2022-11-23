@@ -13,6 +13,8 @@ import { MenuFormComponent } from './components/menu-form/menu-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { MenuGiornoComponent } from './components/menu-giorno/menu-giorno.component';
+import { DinerLoginComponent } from './components/diner-login/diner-login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
     DiaryFormComponent,
     MenuFormComponent,
     MenuListComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    MenuGiornoComponent,
+    DinerLoginComponent
   ],
   imports: [
     BrowserModule,
