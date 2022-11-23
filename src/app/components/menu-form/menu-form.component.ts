@@ -25,23 +25,26 @@ export class MenuFormComponent implements OnInit {
   menuItem$ = new Subject<Menu>;
 
   constructor(
-    private menuSrv: MenuService, 
-    private router: Router, 
-    private ActivatedRoute: ActivatedRoute, 
+    private menuSrv: MenuService,
+    private router: Router,
+    private ActivatedRoute: ActivatedRoute,
     private dataSrv: DataService,
     private api: ApicallService
-    ) {
+  ) {
 
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('token'))
-    this.api.goToAreaRiservata(localStorage.getItem('token')).subscribe( (res: any) => {
-      if( res && res['status'] === 'ok') {
-        console.log('we are in the manu form area riservata');
-        
+    if (localStorage.getItem('token'))
+      this.api.goToAreaRiservata(localStorage.getItem('token')).subscribe((res: any) => {
+        if (res && res['status'] === 'ok') {
+          console.log('we are in the manu form area riservata');
+
+        } else {
+          console.log('we are infanculo in dashboard');
+        }
       }
-    })
+      )
     this.retrieveDataMenu();
 
     this.ActivatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
