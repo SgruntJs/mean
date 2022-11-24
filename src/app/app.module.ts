@@ -18,6 +18,7 @@ import { DinerLoginComponent } from './components/diner-login/diner-login.compon
 import { registerLocaleData } from '@angular/common';
 
 import localeItSm from '@angular/common/locales/it-SM';
+import { HomeComponent } from './components/home/home.component';
 
 registerLocaleData(localeItSm);
 
@@ -31,7 +32,8 @@ registerLocaleData(localeItSm);
     MenuListComponent,
     AdminLoginComponent,
     MenuGiornoComponent,
-    DinerLoginComponent
+    DinerLoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
