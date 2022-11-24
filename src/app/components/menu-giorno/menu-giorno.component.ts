@@ -27,12 +27,15 @@ export class MenuGiornoComponent implements OnInit {
   
 
     this.dinnerForm = new FormGroup({
+      "dataPasto": new FormControl(this.domani, [Validators.required]), 
       "user": new FormControl(this.user, [Validators.required]),
       "primo": new FormControl(null, [Validators.required]),
       "secondo": new FormControl(null, [Validators.required]),
 
     })
   }
+
+
 
   getNextMenu() {
     console.log('this.domani', this.domani.toISOString());

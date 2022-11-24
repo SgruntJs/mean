@@ -7,7 +7,7 @@
 
 
             Puoi prenotare il menu di domani {{domani | date: 'dd MMMM yyyy'}}
-            <div class="menu-giorno">
+            <div class="menu-giorno" *ngIf="tomorrowMenu">
                 <form [formGroup]="dinnerForm" (ngSubmit)="onSubmit()">
 
                     <div class="form-group">
@@ -24,7 +24,7 @@
                           </select>
                     </div>
                     <div class="form-group">
-                        <label for="giorno">Primi:</label>
+                        <label for="giorno">Secondi:</label>
                         <select class="form-select" aria-label="Default select example" formControlName="secondo">
                             <option selected>Scegli un secondo</option>
                             <option value="{{tomorrowMenu.secondo1}}">{{tomorrowMenu.secondo1}}</option>
