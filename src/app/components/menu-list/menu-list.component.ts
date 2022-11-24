@@ -24,17 +24,21 @@ export class MenuListComponent implements OnInit {
   }
 
   showAllMenu() {
-      this.menuSrv.getMenu()
+      this.menuSrv.getOrderedMenu()
       .subscribe( updateRes => {
-        this.menu = updateRes.menu;
-        console.log(this.menu);
+        this.menu = updateRes.body;
+      
         //funzione per mettere in ordine di data
-        this.menu.sort(function(a, b){
-          var aa = a.giorno.split('-').reverse().join(),
-              bb = b.giorno.split('-').reverse().join();
-          return aa < bb ? -1 : (aa > bb ? 1 : 0);
-          });
-        console.log(this.menu);
+       
+        //   this.menu.sort( (a: any, b:any) => {   
+        //     // '01/03/2014'.split('/')
+        //     // gives ["2022", "11", "24"]
+        //     a = +a.giorno.split("T")[0].split('-').reverse().join();
+        //     b = +b.giorno.split("T")[0].split('-').reverse().join();
+        //     return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
+        
+        // });
+      
       });
   }
   // https://stackoverflow.com/questions/52440119/angular-how-to-display-a-date-in-french-format

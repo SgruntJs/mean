@@ -20,6 +20,9 @@ export class MenuService {
     return this.http.get<any>(`http://localhost:3000/menu-list`);
   }
 
+  getOrderedMenu(){
+    return this.http.get<any>(`http://localhost:3000/sortRecord`);
+  }
 
 
   deleteMenu(id: string) {
