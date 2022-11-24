@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { filter, find, from, map, mergeAll, mergeMap, Subject, switchMap, tap } from 'rxjs';
 import { Menu } from 'src/app/models/menu.model';
 import { MenuService } from 'src/app/services/menu/menu.service';
@@ -14,7 +15,8 @@ export class MenuGiornoComponent implements OnInit {
   domani!: Date;
   menu$ = new Subject<any>;
   tomorrowMenu : any;
-
+  dinnerForm!: FormGroup;
+  user = "Pippo Rossi";
   constructor(private menuSrv: MenuService) { }
 
   ngOnInit(): void {
@@ -22,6 +24,14 @@ export class MenuGiornoComponent implements OnInit {
     this.domani = new Date();
     this.domani.setDate(this.domani.getDate() + 1);
     this.getNextMenu();
+  
+
+    this.dinnerForm = new FormGroup({
+      "user": new FormControl(this.user, [Validators.required]),
+      "primo": new FormControl(null, [Validators.required]),
+      "secondo": new FormControl(null, [Validators.required]),
+
+    })
   }
 
   getNextMenu() {
@@ -58,6 +68,10 @@ export class MenuGiornoComponent implements OnInit {
       this.tomorrowMenu = data;
     
     });
+  }
+
+  onSubmit(){
+    console.log(this.dinnerForm.value);
   }
 
 }

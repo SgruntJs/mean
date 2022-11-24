@@ -69,7 +69,7 @@ export class MenuFormComponent implements OnInit {
     this.menuItem$.subscribe(res => {
       //https://stackoverflow.com/questions/3568921/how-to-remove-part-of-a-string
       let newdate = this.menuItem.giorno.split("T")[0];
-      //console.log(newdate);
+      console.log(newdate);
       this.menuForm = new FormGroup({
         "giorno": new FormControl(this.editMode ? newdate : '', [Validators.required]),
         "primo1": new FormControl(this.editMode ? this.menuItem.primo1 : '', [Validators.required]),
