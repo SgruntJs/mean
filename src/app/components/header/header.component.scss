@@ -1,5 +1,6 @@
+@import "../../../assets/common/styles.scss";
 .header {
-  background-color: #0014dc;
+  background-color: $blue;
   color: #fff;
   .nav-link {
     color: #fff;
@@ -9,7 +10,7 @@
   }
   .navbar-brand {
     font-family: "Rubik Microbe", cursive;
-    color: #fff;
+    color: $white;
     font-size: 30px;
   }
 }

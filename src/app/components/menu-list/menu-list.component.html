@@ -4,7 +4,7 @@
         <div class="col-lg-4" *ngFor="let m of menu">
             <div class="card card-margin">
                 <div class="card-header no-border">
-                    <h5 class="card-title">{{m.giorno}}</h5>
+                    <h5 class="card-title">{{m.giorno | date:'dd MMMM yyyy'}}</h5>
                 </div>
                 <div class="card-body pt-0">
                     <div class="widget-49">
