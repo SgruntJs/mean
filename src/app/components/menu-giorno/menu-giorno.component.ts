@@ -45,16 +45,7 @@ export class MenuGiornoComponent implements OnInit {
     this.menuSrv.getOrderedMenu().subscribe(res => {
       this.menu$.next(res.body);
     });
-    // this.menuSrv.getOrderedMenu().pipe(
-    //   map(date => date.body.giorno.toISOString().split("T")[0]),
-    //   filter(day => day.giorno === newDomani)
-    // ).subscribe(res => {
-    //   console.log('date concide?', res)
-    // })
-
     const map$ = this.menu$.pipe(
-      // map(x => { return x[0].giorno.split("T")[0]}),
-      // filter(day => { return day.giorno === newDomani})
       map( item => {
         item.forEach((y: any) => {
         y.giorno = y.giorno.split("T")[0];
