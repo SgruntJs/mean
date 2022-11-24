@@ -37,7 +37,7 @@ export class MenuListComponent implements OnInit {
         console.log(this.menu);
       });
   }
-
+  // https://stackoverflow.com/questions/52440119/angular-how-to-display-a-date-in-french-format
   removeMenu(id: string) {
     console.log(id);
     this.menuSrv.deleteMenu(id).subscribe( res => {

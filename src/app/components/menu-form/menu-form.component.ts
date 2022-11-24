@@ -67,9 +67,11 @@ export class MenuFormComponent implements OnInit {
       }
     });
     this.menuItem$.subscribe(res => {
-      console.log(res);
+      
+      let newdate = this.menuItem.giorno.split("T")[0];
+      console.log(newdate);
       this.menuForm = new FormGroup({
-        "giorno": new FormControl(this.editMode ? this.menuItem.giorno : '', [Validators.required]),
+        "giorno": new FormControl(this.editMode ? newdate : '', [Validators.required]),
         "primo1": new FormControl(this.editMode ? this.menuItem.primo1 : '', [Validators.required]),
         "primo2": new FormControl(this.editMode ? this.menuItem.primo2 : '', [Validators.required]),
         "primo3": new FormControl(this.editMode ? this.menuItem.primo3 : '', [Validators.required]),
