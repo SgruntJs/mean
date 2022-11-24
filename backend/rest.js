@@ -151,4 +151,31 @@ app.get('/menu-list', (req, res, next) => {
     })
 });
 
+//provo a creare il sort
+sortRecord = (req, res, next) => {
+    try{
+        MenuModel.find({}).sort({giorno: 1}).exec((err, docs) => {
+            if(err) {
+                responseObj = {
+                    "status": "error",
+                    "msg": "Error occured.",
+                    "body": err
+                }
+                res.status(500).send(responseObj);
+            }else{
+                responseObj = {
+                    "status": "success",
+                    "msg": "Fetch record",
+                    "body": docs
+                }
+                res.status(200).send(responseObj);
+            }
+        })
+    }catch(error) {
+        console.log('Error', error);
+    }
+}
+
+app.get('/sortRecord',  sortRecord.bind());
+
 module.exports = app;
