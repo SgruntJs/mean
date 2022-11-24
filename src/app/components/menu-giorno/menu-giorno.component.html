@@ -1,1 +1,22 @@
-<p>menu-giorno works!</p>
+<div class="menu-giorno-container">
+    <h1 class="menu-giorno__title">Ciao Utente</h1>
+    <h3>{{oggi | date: 'dd MMMM yyyy'}}</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                Puoi prenotare il menu di domani {{domani | date: 'dd MMMM yyyy'}}
+                <div class="menu-giorno">
+                    Primi:<br>
+                    {{tomorrowMenu.primo1}}<br>
+                    {{tomorrowMenu.primo2}}<br>
+                    {{tomorrowMenu.primo3}}<br>
+                    Secondi: <br>
+                    {{tomorrowMenu.secondo1}}<br>
+                    {{tomorrowMenu.secondo2}}<br>
+                    {{tomorrowMenu.secondo3}}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
