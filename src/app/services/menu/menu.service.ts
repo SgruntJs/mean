@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { Menu } from 'src/app/models/menu.model';
 import { Pasto } from 'src/app/models/orderPasto';
 
@@ -26,7 +25,11 @@ export class MenuService {
   }
 
   postMOrder(pasto: Pasto){
-    return this.http.post<any>(`http://localhost:3000/menu-list`, pasto);
+    return this.http.post<any>(`http://localhost:3000/pasto/pasto`, pasto);
+  }
+
+  receiveOrder() {
+    return this.http.get<any>(`http://localhost:3000/pasto/pasti-prenotati`);
   }
 
 

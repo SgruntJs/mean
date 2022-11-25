@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { filter, find, from, map, mergeAll, mergeMap, Subject, switchMap, tap } from 'rxjs';
 import { Menu } from 'src/app/models/menu.model';
@@ -66,8 +66,17 @@ export class MenuGiornoComponent implements OnInit {
 
   onSubmit(){
     console.log(this.dinnerForm.value);
+    this.menuSrv.postMOrder(this.dinnerForm.value).subscribe(data=> {
+      this.riceviPrenotazioni();
+    });
   }
 
+  riceviPrenotazioni() {
+
+    this.menuSrv.receiveOrder().subscribe( ord => {
+      console.log(ord)
+    })
+  }
 }
 
 

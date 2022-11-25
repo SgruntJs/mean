@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pastoModelSchema = require('../models/pastoModel');
 
+
 router.post('/pasto', async(req, res) => {
     const pasto = new pastoModelSchema( {
         dataPasto: req.body.dataPasto, 
@@ -16,3 +17,13 @@ router.post('/pasto', async(req, res) => {
         })
     });
 });
+
+// register a URI
+router.get('/pasti-prenotati',(req, res, next) => {
+    pastoModelSchema.find().then( (data) => {
+        res.json({'pasti': data});
+    })
+    
+})
+
+module.exports = router;
