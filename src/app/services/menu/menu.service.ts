@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Menu } from 'src/app/models/menu.model';
+import { Pasto } from 'src/app/models/orderPasto';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class MenuService {
 
   getOrderedMenu(){
     return this.http.get<any>(`http://localhost:3000/sortRecord`);
+  }
+
+  postMOrder(pasto: Pasto){
+    return this.http.post<any>(`http://localhost:3000/menu-list`, pasto);
   }
 
 
