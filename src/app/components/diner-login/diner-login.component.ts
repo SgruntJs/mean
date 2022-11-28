@@ -25,6 +25,7 @@ export class DinerLoginComponent implements OnInit {
       this.api.dinerLogin(this.dinerForm.value).subscribe( (res: any) => {
         if(res && res['status'] === 'ok' && res['data']['response'] && res['data']['authToken']){
           localStorage.setItem('diner-token', res['data']['authToken']);
+          localStorage.setItem('username', res['data']['existUser']['username']);
           this.router.navigate(['/prenota-menu']);
         }
       })
