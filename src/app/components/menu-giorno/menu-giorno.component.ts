@@ -71,18 +71,23 @@ export class MenuGiornoComponent implements OnInit {
 
   onSubmit() {
     console.log(this.dinnerForm.value);
-    this.menuSrv.postOrder(this.dinnerForm.value).subscribe(data => {
-      this.riceviPrenotazioni();
-      this.success = true;
-      this.dinnerForm.reset();
-    },
-    error => {
-      this.errors = error;
-    },);
+    this.menuSrv.postOrder(this.dinnerForm.value)
+      .subscribe(
+        {
+          next: (result) => {
+            this.riceviPrenotazioni();
+          },
+          error: error => {
+            this.errors = error;
+          },
+          complete: () => {
+            this.success = true;
+            this.dinnerForm.reset();
+          }
+        });
   }
 
   riceviPrenotazioni() {
-
     this.menuSrv.receiveOrder().subscribe(ord => {
       console.log(ord)
     })
