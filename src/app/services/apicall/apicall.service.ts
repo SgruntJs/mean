@@ -30,6 +30,6 @@ export class ApicallService {
 
   
   dinerLogin(adminData: Admin) {// cambiare in User
-    return this.http.post(`http://localhost:3000/auth/diner-login`, adminData);
+    return this.http.post(`http://localhost:3000/diner/diner-login`, adminData);
   }
 }
