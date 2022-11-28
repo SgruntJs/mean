@@ -17,6 +17,9 @@ export class MenuGiornoComponent implements OnInit {
   tomorrowMenu: any;
   dinnerForm!: FormGroup;
   user!: string;
+  success = false;
+  errors: any;
+
   constructor(private menuSrv: MenuService) { }
 
   ngOnInit(): void {
@@ -50,7 +53,7 @@ export class MenuGiornoComponent implements OnInit {
       map(item => {
         item.forEach((y: any) => {
           y.giorno = y.giorno.split("T")[0];
-          console.log('y.giorno', y.giorno)
+          //console.log('y.giorno', y.giorno)
         });
         return item
       }),
@@ -70,7 +73,12 @@ export class MenuGiornoComponent implements OnInit {
     console.log(this.dinnerForm.value);
     this.menuSrv.postOrder(this.dinnerForm.value).subscribe(data => {
       this.riceviPrenotazioni();
-    });
+      this.success = true;
+      this.dinnerForm.reset();
+    },
+    error => {
+      this.errors = error;
+    },);
   }
 
   riceviPrenotazioni() {
