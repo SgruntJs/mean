@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { filter, find, from, map, mergeAll, mergeMap, Subject, switchMap, tap } from 'rxjs';
+import { filter, find, from, map, mergeAll, mergeMap, single, Subject, switchMap, tap } from 'rxjs';
 import { Menu } from 'src/app/models/menu.model';
 import { MenuService } from 'src/app/services/menu/menu.service';
 
@@ -14,7 +14,7 @@ export class MenuGiornoComponent implements OnInit {
   oggi!: Date;
   domani!: Date;
   menu$ = new Subject<any>;
-  tomorrowMenu : any;
+  tomorrowMenu: any;
   dinnerForm!: FormGroup;
   user = "Pippo Rossi";
   constructor(private menuSrv: MenuService) { }
@@ -24,10 +24,10 @@ export class MenuGiornoComponent implements OnInit {
     this.domani = new Date();
     this.domani.setDate(this.domani.getDate() + 1);
     this.getNextMenu();
-  
+
 
     this.dinnerForm = new FormGroup({
-      "dataPasto": new FormControl(this.domani, [Validators.required]), 
+      "dataPasto": new FormControl(this.domani, [Validators.required]),
       "user": new FormControl(this.user, [Validators.required]),
       "primo": new FormControl(null, [Validators.required]),
       "secondo": new FormControl(null, [Validators.required]),
@@ -46,34 +46,35 @@ export class MenuGiornoComponent implements OnInit {
       this.menu$.next(res.body);
     });
     const map$ = this.menu$.pipe(
-      map( item => {
+      map(item => {
         item.forEach((y: any) => {
-        y.giorno = y.giorno.split("T")[0];
-         console.log('y.giorno', y.giorno)
+          y.giorno = y.giorno.split("T")[0];
+          console.log('y.giorno', y.giorno)
         });
         return item
       }),
-      tap( data => data.filter( (d:any) => d.giorno = newDomani)),
-       mergeMap( x => x),
-      
-       )
-      
-    map$.subscribe((data:any) => {
+      map(data => data.filter((day: any) => day.giorno === newDomani)),
+      mergeMap(x => x),
+
+    )
+
+    map$.subscribe((data: any) => {
       this.tomorrowMenu = data;
-    
+      console.log('this.tomorrowMenu', this.tomorrowMenu);
+
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.dinnerForm.value);
-    this.menuSrv.postMOrder(this.dinnerForm.value).subscribe(data=> {
+    this.menuSrv.postMOrder(this.dinnerForm.value).subscribe(data => {
       this.riceviPrenotazioni();
     });
   }
 
   riceviPrenotazioni() {
 
-    this.menuSrv.receiveOrder().subscribe( ord => {
+    this.menuSrv.receiveOrder().subscribe(ord => {
       console.log(ord)
     })
   }
