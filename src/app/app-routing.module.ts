@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DiaryFormComponent } from './components/diary-form/diary-form.component';
+import { DinerLoginComponent } from './components/diner-login/diner-login.component';
 import { HomeComponent } from './components/home/home.component';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
 import { MenuGiornoComponent } from './components/menu-giorno/menu-giorno.component';
@@ -29,6 +30,9 @@ const routes: Routes = [
   },
   {
     path:"admin", component: AdminLoginComponent
+  },
+  {
+    path:"diner", component: DinerLoginComponent
   },
   {
     path:"prenota-menu", component: MenuGiornoComponent
