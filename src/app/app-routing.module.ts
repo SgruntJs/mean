@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
 import { MenuGiornoComponent } from './components/menu-giorno/menu-giorno.component';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
+import { PrenotazioniComponent } from './components/prenotazioni/prenotazioni.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,9 @@ const routes: Routes = [
   },
   {
     path:"prenota-menu", component: MenuGiornoComponent
+  },
+  {
+    path:"prenotazioni", component: PrenotazioniComponent
   },
 ];
 

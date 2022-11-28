@@ -1,0 +1,30 @@
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Utente</th>
+            <th scope="col">Giorno</th>
+            <th scope="col">Primo</th>
+            <th scope="col">Secondo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of prenotazioni$ | async; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+                <ngb-highlight [result]="p.user" ></ngb-highlight>
+            </td>
+            <td>
+                <ngb-highlight [result]="p.dataPasto | date" ></ngb-highlight>
+            </td>
+            <td>
+                <ngb-highlight [result]="p.primo" ></ngb-highlight>
+            </td>
+            <td>
+                <ngb-highlight [result]="p.secondo"></ngb-highlight>
+            </td>
+        </tr>
+    </tbody>
+</table>

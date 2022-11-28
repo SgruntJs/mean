@@ -19,6 +19,7 @@ import { registerLocaleData } from '@angular/common';
 
 import localeItSm from '@angular/common/locales/it-SM';
 import { HomeComponent } from './components/home/home.component';
+import { PrenotazioniComponent } from './components/prenotazioni/prenotazioni.component';
 
 registerLocaleData(localeItSm);
 
@@ -33,7 +34,8 @@ registerLocaleData(localeItSm);
     AdminLoginComponent,
     MenuGiornoComponent,
     DinerLoginComponent,
-    HomeComponent
+    HomeComponent,
+    PrenotazioniComponent
   ],
   imports: [
     BrowserModule,
