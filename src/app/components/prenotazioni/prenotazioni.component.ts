@@ -21,10 +21,10 @@ export class PrenotazioniComponent implements OnInit {
 	filter = new FormControl('', { nonNullable: true });
   ordini$= new Subject<Pasto[]>;
 
-	constructor(private menuSrv: MenuService ) {
+	constructor(private menuSrv: MenuService, pipe: DecimalPipe ) {
     this.prenotazioni$ =  this.filter.valueChanges.pipe(
       startWith(''),
-      map((text) => this.search(text)),
+      map((text) => this.search(text, pipe)),
     );
      this.prenotazioni$ = this.menuSrv.receiveOrder().pipe(
         map( data => data.pasti)
@@ -40,7 +40,7 @@ export class PrenotazioniComponent implements OnInit {
   }
 
 
-  search(text: string): any {
+  search(text: string, pipe: PipeTransform): any {
 
       // return this.ordini.filter((res) => {
       //  //  console.log('filter res', res);
@@ -54,7 +54,9 @@ export class PrenotazioniComponent implements OnInit {
           data.filter( res => {
             const term = text.toLowerCase();
             return (
-                   new Date(res.dataPasto).toISOString().includes(term)
+                   new Date(res.dataPasto).toISOString().includes(term) ||
+                   pipe.transform(res.primo).includes(term) ||
+                   pipe.transform(res.secondo).includes(term)
                  );
           } )
          }
