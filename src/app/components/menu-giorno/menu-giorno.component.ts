@@ -16,13 +16,14 @@ export class MenuGiornoComponent implements OnInit {
   menu$ = new Subject<any>;
   tomorrowMenu: any;
   dinnerForm!: FormGroup;
-  user = "Pippo Rossi";
+  user!: string;
   constructor(private menuSrv: MenuService) { }
 
   ngOnInit(): void {
     this.oggi = new Date();
     this.domani = new Date();
     this.domani.setDate(this.domani.getDate() + 1);
+    this.user = localStorage.getItem('username')!;
     this.getNextMenu();
 
 
@@ -67,7 +68,7 @@ export class MenuGiornoComponent implements OnInit {
 
   onSubmit() {
     console.log(this.dinnerForm.value);
-    this.menuSrv.postMOrder(this.dinnerForm.value).subscribe(data => {
+    this.menuSrv.postOrder(this.dinnerForm.value).subscribe(data => {
       this.riceviPrenotazioni();
     });
   }

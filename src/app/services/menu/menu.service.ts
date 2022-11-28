@@ -24,7 +24,7 @@ export class MenuService {
     return this.http.get<any>(`http://localhost:3000/sortRecord`);
   }
 
-  postMOrder(pasto: Pasto){
+  postOrder(pasto: Pasto){
     return this.http.post<any>(`http://localhost:3000/pasto/pasto`, pasto);
   }
 

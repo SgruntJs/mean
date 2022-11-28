@@ -2,7 +2,7 @@
     <div class="col">
 
         <div class="menu-giorno-container">
-            <h1 class="menu-giorno__title">Ciao Utente</h1>
+            <h1 class="menu-giorno__title" *ngIf="user">Ciao {{user}}</h1>
             <h3>{{oggi | date: 'dd MMMM yyyy'}}</h3>
 
 
