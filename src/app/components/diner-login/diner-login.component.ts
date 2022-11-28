@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApicallService } from 'src/app/services/apicall/apicall.service';
 
 @Component({
   selector: 'app-diner-login',
@@ -9,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class DinerLoginComponent implements OnInit {
   dinerForm!: FormGroup;
 
-  constructor() { }
+  constructor(private api: ApicallService) { }
 
   ngOnInit(): void {
     this.dinerForm = new FormGroup({
@@ -19,8 +20,14 @@ export class DinerLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    //do something
-    console.log(this.dinerForm.value);
-    //navigate
+    if(this.dinerForm.valid){
+      this.api.login(this.dinerForm.value).subscribe( (res: any) => {
+        if(res && res['status'] === 'ok' && res['data']['response'] && res['data']['authToken']){
+          localStorage.setItem('diner-token', res['data']['authToken']);
+          //this.router.navigate(['/aggiungi-menu']);
+        }
+      })
+    }
+      console.log(this.dinerForm.value);
   }
 }
