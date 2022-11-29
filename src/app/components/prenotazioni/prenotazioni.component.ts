@@ -41,14 +41,6 @@ export class PrenotazioniComponent implements OnInit {
 
 
   search(text: string, pipe: PipeTransform): any {
-
-      // return this.ordini.filter((res) => {
-      //  //  console.log('filter res', res);
-      //   const term = text.toLowerCase();
-      //   return (
-      //     new Date(res.dataPasto).toISOString().includes(term)
-      //   );
-      // });
       this.ordini$.subscribe(
          data => {
           data.filter( res => {
