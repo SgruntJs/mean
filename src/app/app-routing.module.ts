@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { RoleGuard } from './auth/role.guard';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DiaryFormComponent } from './components/diary-form/diary-form.component';
 import { DinerLoginComponent } from './components/diner-login/diner-login.component';
@@ -39,7 +40,7 @@ const routes: Routes = [
     path:"prenota-menu", component: MenuGiornoComponent
   },
   {
-    path:"prenotazioni", component: PrenotazioniComponent
+    path:"prenotazioni", component: PrenotazioniComponent, canActivate: [RoleGuard]
   },
 ];
 

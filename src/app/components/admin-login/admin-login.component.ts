@@ -23,11 +23,12 @@ export class AdminLoginComponent implements OnInit {
   
   }
 
-  onSubmit() {
+  onSubmit(role: string) {
     if(this.loginForm.valid){
       this.api.login(this.loginForm.value).subscribe( (res: any) => {
         if(res && res['status'] === 'ok' && res['data']['response'] && res['data']['authToken']){
           localStorage.setItem('token', res['data']['authToken']);
+          localStorage.setItem('role', 'admin');
           this.router.navigate(['/aggiungi-menu']);
         }
       })
