@@ -30,7 +30,7 @@ export class PrenotazioniComponent implements OnInit {
         map( data => data.pasti)
       ); 
 	}
-
+  // https://stackoverflow.com/questions/55644948/reverse-an-observable-array-in-angularfire2-angular-6
   ngOnInit(): void {
     this.menuSrv.receiveOrder().subscribe( res => { 
       this.prenotazioni = res.pasti;

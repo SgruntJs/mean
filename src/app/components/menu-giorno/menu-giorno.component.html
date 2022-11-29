@@ -1,11 +1,10 @@
 <div class="row">
     <div class="col">
-
         <div class="menu-giorno-container">
-            <h1 class="menu-giorno__title" *ngIf="user">Ciao {{user}}</h1>
+            <h1 class="menu-giorno__title" *ngIf="user; else noLoggedIn">Ciao {{user}}</h1>
+            <ng-template #noLoggedIn>Devi effettuare l'accesso per potere prenotare un pasto, <button
+                    class="btn btn-success" routerLink="/diner">vai alla login</button></ng-template>
             <h3>{{oggi | date: 'dd MMMM yyyy'}}</h3>
-
-
             Puoi prenotare il menu di domani {{domani | date: 'dd MMMM yyyy'}}
             <div class="menu-giorno" *ngIf="tomorrowMenu">
                 <form [formGroup]="dinnerForm" (ngSubmit)="onSubmit()">
@@ -21,7 +20,7 @@
                             <option value="{{tomorrowMenu.primo1}}">{{tomorrowMenu.primo1}}</option>
                             <option value="{{tomorrowMenu.primo2}}">{{tomorrowMenu.primo2}}</option>
                             <option value="{{tomorrowMenu.primo3}}">{{tomorrowMenu.primo3}}</option>
-                          </select>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="giorno">Secondi:</label>
@@ -30,7 +29,7 @@
                             <option value="{{tomorrowMenu.secondo1}}">{{tomorrowMenu.secondo1}}</option>
                             <option value="{{tomorrowMenu.secondo2}}">{{tomorrowMenu.secondo2}}</option>
                             <option value="{{tomorrowMenu.secondo3}}">{{tomorrowMenu.secondo3}}</option>
-                          </select>
+                        </select>
                     </div>
                     <button class="btn btn-success" [disabled]="!dinnerForm.valid">Prenota</button>
                 </form>

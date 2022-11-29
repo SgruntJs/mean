@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of prenotazioni$ | async; index as i">
+        <tr *ngFor="let p of (prenotazioni$ | async)?.slice()?.reverse(); index as i">
             <th scope="row">{{ i + 1 }}</th>
             <td>
                 <ngb-highlight [result]="p.user" [term]="filter.value"></ngb-highlight>
