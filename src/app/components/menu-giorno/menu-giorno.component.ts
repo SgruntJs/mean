@@ -49,6 +49,7 @@ export class MenuGiornoComponent implements OnInit {
     this.menuSrv.getOrderedMenu().subscribe(res => {
       this.menu$.next(res.body);
     });
+    //può essere fatto con switchmap() che restituisce una serie di valori, come un array e poi map per mappare il singolo oggetto 
     const map$ = this.menu$.pipe(
       map(item => {
         item.forEach((y: any) => {
